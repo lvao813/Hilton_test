@@ -36,12 +36,7 @@
   },
   "validations": [],
   "relations": {
-    "diningTable":{
-      "type":"hasOne",
-      "model":"DiningTable",
-      "foreignKey": "tableId",
-      "description": "餐桌位置"
-    }
+    
   },
   "acls": [
     {

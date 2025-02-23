@@ -8,19 +8,22 @@
   "scripts": {
     "lint": "eslint .",
     "start": "node .",
-    "posttest": "npm run lint && npm audit"
+    "posttest": "npm run lint && npm audit",
+    "pm2": "pm2-runtime start ecosystem.config.js"
   },
   "dependencies": {
     "compression": "^1.0.3",
     "cookie-parser": "^1.4.7",
     "cors": "^2.5.2",
     "crypto-js": "^4.2.0",
+    "fs-extra": "^11.3.0",
     "helmet": "^3.10.0",
     "log4js": "^6.9.1",
     "loopback": "^3.22.0",
     "loopback-boot": "^2.6.5",
     "loopback-component-explorer": "^6.2.0",
     "loopback-connector-mongodb": "^4.2.0",
+    "request-promise": "^4.2.6",
     "serve-favicon": "^2.0.1",
     "strong-error-handler": "^3.0.0"
   },
