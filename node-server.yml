@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  hilton_test:
+     image: hilton_test:test-001
+     restart: always
+     ports:
+      - "3333:3000"
+    #  volumes:
+      # 外挂日志
+      # - /var/log/proxima_test:/usr/src/app/logs
+     network_mode: "bridge"
+     environment:
+    #  prod为生产模式，会隐藏堆栈信息，测试站不需要使用
+      # - NODE_ENV=prod
+      - MONGODB_URL=mongodb://192.168.3.129:27017
+      - MONGODB_DATABASE=test
+      - MONGODB_PASSWORD=123456
+      - MONGODB_USER=admin
+      - PM2_M=1G
+      - PM2_I=1
+     container_name: proxima_test
+     hostname: proxima_test

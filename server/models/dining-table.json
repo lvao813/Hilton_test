@@ -1,0 +1,25 @@
+{
+  "name": "DiningTable",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "size": {
+      "type": "number",
+      "required": true,
+      "description": "0：4人桌，1：6人桌；2：8人桌，",
+      "default": 1
+    },
+    "name": {
+      "type": "string",
+      "required": true,
+      "description": "名称"
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}

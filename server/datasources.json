@@ -4,13 +4,11 @@
     "connector": "memory"
   },
   "mongo": {
-    "host": "127.0.0.1",
-    "port": 27017,
-    "url": "",
-    "database": "",
-    "password": "",
+    "url": "mongodb://192.168.3.129:27017",
+    "database": "test",
+    "password": "123456",
     "name": "mongo",
-    "user": "",
+    "user": "admin",
     "useNewUrlParser": true,
     "connector": "mongodb"
   }
