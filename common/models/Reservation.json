@@ -1,0 +1,182 @@
+{
+  "name": "Reservation",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "phone": {
+      "type": "string",
+      "required": true
+    },
+    "guestName": {
+      "type": "string",
+      "required": true
+    },
+    "startTime": {
+      "type": "date",
+      "required": true,
+      "description": "预定开始时间"
+    },
+    "endTime": {
+      "type": "date",
+      "required": true,
+      "description": "订单结束时间"
+    },
+    "status": {
+      "type": "number",
+      "default": 1
+    },
+    "size": {
+      "type": "number",
+      "description": "餐位大小",
+      "default": 2
+    }
+  },
+  "validations": [],
+  "relations": {
+    "diningTable":{
+      "type":"hasOne",
+      "model":"DiningTable",
+      "foreignKey": "tableId",
+      "description": "餐桌位置"
+    }
+  },
+  "acls": [
+    {
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "DENY"
+    },
+    {
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "ALLOW",
+      "property": "create"
+    },
+    {
+      "principalType": "ROLE",
+      "principalId": "$authenticated",
+      "permission": "ALLOW",
+      "property": "find"
+    },
+    {
+      "principalType": "ROLE",
+      "principalId": "$authenticated",
+      "permission": "ALLOW",
+      "property": "findById"
+    },
+    {
+      "principalType": "ROLE",
+      "principalId": "$authenticated",
+      "permission": "ALLOW",
+      "property": "patchAttributes"
+    },
+    {
+      "principalType": "ROLE",
+      "principalId": "$authenticated",
+      "permission": "ALLOW",
+      "property": "replaceById"
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "ALLOW",
+      "property": "guestCancelOrder"
+    },
+    {
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "ALLOW",
+      "property": "guestUpdateOrder"
+    },
+    {
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "ALLOW",
+      "property": "getGuestOrderList"
+    }
+  ],
+  "methods": {
+    "getGuestOrderList": {
+      "description": "使用手机号码获取订单列表",
+      "accepts": [
+        {
+          "arg": "phone",
+          "type": "string",
+          "http": {
+            "source": "query"
+          },
+          "description": ""
+        },
+        {
+          "arg": "options",
+          "type": "object",
+          "http": "optionsFromRequest"
+        }
+      ],
+      "returns": {
+        "type": "object",
+        "root": true
+      },
+      "http": {
+        "path": "/order_list",
+        "verb": "get"
+      }
+    },
+    "guestCancelOrder": {
+      "description": "取消订单需要填写手机号码",
+      "accepts": [
+        {
+          "arg": "data",
+          "type": "object",
+          "http": {
+            "source": "body"
+          },
+          "description": "{\"phone\":\"11111111\",\"id\":\"\"}"
+        },
+        {
+          "arg": "options",
+          "type": "object",
+          "http": "optionsFromRequest"
+        }
+      ],
+      "returns": {
+        "type": "object",
+        "root": true
+      },
+      "http": {
+        "path": "/cancel",
+        "verb": "patch"
+      }
+    },
+    "guestUpdateOrder": {
+      "description": "更新订单需要填写手机号码",
+      "accepts": [
+        {
+          "arg": "data",
+          "type": "object",
+          "http": {
+            "source": "body"
+          },
+          "description": "{\"phone\":\"11111111\",\"id\":\"\"}"
+        },
+        {
+          "arg": "options",
+          "type": "object",
+          "http": "optionsFromRequest"
+        }
+      ],
+      "returns": {
+        "type": "object",
+        "root": true
+      },
+      "http": {
+        "path": "/cancel",
+        "verb": "patch"
+      }
+    }
+  }
+}

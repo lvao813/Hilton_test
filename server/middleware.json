@@ -30,6 +30,11 @@
       "enabled": false
     }
   },
+  "session:before": {
+    "cookie-parser": {
+      "params": "${cookieSecret}"
+    }
+  },
   "session": {},
   "auth": {},
   "parse": {},
@@ -45,6 +50,8 @@
     "loopback#urlNotFound": {}
   },
   "final:after": {
+    "./middleware/error-logger": {},
     "strong-error-handler": {}
+    
   }
 }

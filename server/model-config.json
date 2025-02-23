@@ -13,9 +13,6 @@
       "./mixins"
     ]
   },
-  "User": {
-    "dataSource": "db"
-  },
   "AccessToken": {
     "dataSource": "db",
     "public": false
@@ -38,5 +35,17 @@
   "CustomUser": {
     "dataSource": "mongo",
     "public": false
+  },
+  "Reservation": {
+    "dataSource": "mongo",
+    "public": true
+  },
+  "DiningTable": {
+    "dataSource": "mongo",
+    "public": true
+  },
+  "UserBase": {
+    "dataSource": "db",
+    "public": true
   }
 }
